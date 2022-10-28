@@ -1,4 +1,4 @@
-counter_tb.o: ../counter_tb.cpp Vcounter.h \
+counter_challenge_tb.o: ../counter_challenge_tb.cpp Vcounter.h \
  /usr/local/share/verilator/include/verilated.h \
  /usr/local/share/verilator/include/verilatedos.h \
  /usr/local/share/verilator/include/verilated_config.h \
