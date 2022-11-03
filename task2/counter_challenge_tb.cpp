@@ -40,18 +40,21 @@ int main(int argc, char **argv, char **env)
         }
 
         // ++++ Send count value to Vbuddy
-        vbdHex(4, (int(top->count) >> 16) & 0xF);
-        vbdHex(3, (int(top->count) >> 8) & 0xF);
-        vbdHex(2, (int(top->count) >> 4) & 0xF);
-        vbdHex(1, int(top->count) & 0xF);
-        vbdCycle(i + 1);
-        // ---- end of Vbuddy output section
-        // vbdPlot(int(top->count), 0, 255);
+        // vbdHex(4, (int(top->count) >> 16) & 0xF);
+        // vbdHex(3, (int(top->count) >> 8) & 0xF);
+        // vbdHex(2, (int(top->count) >> 4) & 0xF);
+        // vbdHex(1, int(top->count) & 0xF);
         // vbdCycle(i + 1);
+        // ---- end of Vbuddy output section
+        vbdPlot(int(top->count), 0, 255);
+        vbdCycle(i + 1);
 
 
         top->rst = (i < 2) | (i == 15);
-        top->en = vbdFlag();
+        if (vbdFlag() == 0){
+            int enable = -1
+        }
+        top->en = enable;
         if (Verilated::gotFinish())
             exit(0);
     }

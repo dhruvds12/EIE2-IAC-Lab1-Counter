@@ -1032,7 +1032,7 @@ int vbdOpen() {
     fclose(input_file);
 
   // open USB port
-  port_name[strlen(port_name)-1] = '\0';   // strip '\n'
+  port_name[strlen(port_name)] = '\0';   // strip '\n'
   char errorOpening = serial.openDevice(port_name, 115200);
   if (errorOpening!=1) 
     printf ("\n** Error opening port: %s\n", port_name);

@@ -18,7 +18,8 @@ int main(int argc, char **argv, char **env)
     tfp->open("counter.vcd");
 
     // init Vbuddy
-    if (vbdOpen() != 1){
+    if (vbdOpen() != 1)
+    {
         return (-1);
     }
     vbdHeader("Lab 1: Counter");
@@ -26,7 +27,8 @@ int main(int argc, char **argv, char **env)
     // initialize simulation inputs
     top->clk = 1;
     top->rst = 1;
-    top->en = 0;
+    //top->en = 0;
+    vbdSetMode(1); // reset flag to 0 once flag value read
 
     for (i = 0; i < 1000; i++)
     {
@@ -47,11 +49,13 @@ int main(int argc, char **argv, char **env)
         vbdCycle(i + 1);
         // ---- end of Vbuddy output section
         // vbdPlot(int(top->count), 0, 255);
-        // vbdCycle(i + 1);
+        vbdCycle(i + 1);
+        top->ld = vbdFlag(); // sets id equal to flag value
+        //top->v = vbdValue(); //jumps back to v
 
 
         top->rst = (i < 2) | (i == 15);
-        top->en = vbdFlag();
+        //top->en = vbdFlag();
         if (Verilated::gotFinish())
             exit(0);
     }
